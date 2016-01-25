@@ -1,0 +1,15 @@
+body {
+	width: 100%;
+	background-color: #FFFFFF;
+	font-family: 'Helvetica', 'Meiryo UI', 'F sans-serif';
+}
+
+.ui-widget, .ui-widget .ui-widget {
+	font-size: 90% !important;
+	font-family: 'Meiryo', 'Meiryo UI' !important;
+}
+
+div#body {
+	text-align: center;
+	padding: 5px;
+}
