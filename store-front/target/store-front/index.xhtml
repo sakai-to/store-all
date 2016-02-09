@@ -9,11 +9,21 @@
 
 <h:body>
 	<ui:composition template="./template.xhtml">
-		<ui:define name="header">header</ui:define>
 		<ui:define name="body">
-			<ui:include src="./body.xhtml" />
+			<!-- ContentFlow -->
+			<p:contentFlow value="#{indexView.images}" var="image">
+				<p:graphicImage name="#{image}" library="images"
+					styleClass="content" />
+				<div class="caption">#{image}</div>
+			</p:contentFlow>
+			
+			<!-- メッセージ -->
+			<p:growl id="msgs" showDetail="true" />
+			<p:tagCloud model="#{indexView.model}">
+				<p:ajax event="select" update="msgs"
+					listener="#{indexView.onSelect}" />
+			</p:tagCloud>
 		</ui:define>
-		<ui:define name="footer">footer</ui:define>
 	</ui:composition>
 </h:body>
 </html>

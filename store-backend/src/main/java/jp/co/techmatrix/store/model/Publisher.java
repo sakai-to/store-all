@@ -27,6 +27,23 @@ public class Publisher implements Serializable{
 	
 	@Column(name = "NAME", nullable = false, length = 30)
 	private String name;
+	
+	/**
+	 * コンストラクタ
+	 */
+	public Publisher(){
+		super();
+	}
+	
+	/**
+	 * 引数ありのコンストラクタ
+	 * @param id
+	 * @param name
+	 */
+	public Publisher(int id, String name){
+		this.id = id;
+		this.name = name;
+	}
 
 	/**
 	 * idの取得

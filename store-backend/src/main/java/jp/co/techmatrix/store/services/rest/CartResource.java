@@ -15,6 +15,8 @@ import javax.ws.rs.core.MediaType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import jp.co.techmatrix.store.model.Book;
+import jp.co.techmatrix.store.model.OrderLine;
+import jp.co.techmatrix.store.model.User;
 import jp.co.techmatrix.store.services.AbstractCart;
 
 /**
@@ -62,5 +64,31 @@ public class CartResource extends AbstractCart{
 	@Override
 	public void deleteBook(@QueryParam("id") int id){
 		super.deleteBook(id);
+	}
+	
+	@Override
+	public List<OrderLine> getAllRegister(int id){
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	@PUT
+	@ApiOperation(value = "指定したカートを追加します。")
+	@Path("/add/register")
+	public void addRegister(List<OrderLine> register){
+		super.addRegister(register);
+	}
+
+	@DELETE
+	@Path("/delete/register")
+	@Override
+	public List<OrderLine> removeRegister(User user, @QueryParam("id") int id){
+		return super.removeRegister(user, id);
+	}
+
+	@Override
+	public boolean login(User user){
+		return false;
 	}
 }

@@ -30,10 +30,8 @@ import javax.xml.bind.annotation.XmlType;
  *
  */
 @Entity(name = "BOOK")
-@NamedQueries({
-		@NamedQuery(name = Book.SELECT_ALL_BOOKS, query = "SELECT b FROM BOOK b"),
-		@NamedQuery(name = Book.SELECT_ALL_BOOKS_WHERE_TITLE, query = "SELECT b FROM BOOK b WHERE UPPER(b.title) LIKE UPPER(:title)")
-		})
+@NamedQueries({@NamedQuery(name = Book.SELECT_ALL_BOOKS, query = "SELECT b FROM BOOK b"),
+		@NamedQuery(name = Book.SELECT_ALL_BOOKS_WHERE_TITLE, query = "SELECT b FROM BOOK b WHERE UPPER(b.title) LIKE UPPER(:title)")})
 @XmlRootElement(name = "book")
 @XmlType(propOrder = {"id", "title", "isbn", "authors", "description", "price", "year", "publisher", "stock"})
 public class Book implements Serializable{
@@ -47,7 +45,7 @@ public class Book implements Serializable{
 	 * すべての本を検索するためのJPQL
 	 */
 	public static final String SELECT_ALL_BOOKS = "SELECT_ALL_BOOK";
-	
+
 	/**
 	 * タイトルで本を検索するためのJPQL
 	 */
@@ -67,33 +65,56 @@ public class Book implements Serializable{
 
 	@Column(name = "ISBN", nullable = false, length = 10)
 	private String isbn;
-	
+
 	@Column(name = "TITLE", nullable = false, length = 200)
 	private String title;
-	
+
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Publisher.class)
 	@JoinColumns(@JoinColumn(nullable = false, name = "publisher_id", referencedColumnName = "id"))
 	private Publisher publisher;
-	
+
 	@Temporal(TemporalType.DATE)
 	@Column(name = "YEAR", nullable = false)
 	private Date year;
-	
+
 	@Column(name = "STOCK", nullable = false)
 	private int stock;
-	
+
 	@Column(name = "PRICE", nullable = false)
 	private double price;
-	
+
 	@Column(name = "DESCRIPTION")
 	private String description;
-	
+
 	/**
 	 * コンストラクタ
 	 */
 	public Book(){
 	}
-	
+
+	/**
+	 * 引数ありのコンストラクタ
+	 * @param id
+	 * @param isbn
+	 * @param title
+	 * @param publisher
+	 * @param year
+	 * @param stock
+	 * @param price
+	 * @param description
+	 */
+	public Book(int id, String isbn, String title, Publisher publisher, Date year, int stock, double price,
+			String description){
+		this.id = id;
+		this.isbn = isbn;
+		this.title = title;
+		this.publisher = publisher;
+		this.year = year;
+		this.stock = stock;
+		this.price = price;
+		this.description = description;
+	}
+
 	/**
 	 * idの取得
 	 * @return

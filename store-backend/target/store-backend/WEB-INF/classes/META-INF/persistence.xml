@@ -9,6 +9,8 @@
 		<class>jp.co.techmatrix.store.model.Book</class>
 		<class>jp.co.techmatrix.store.model.Publisher</class>
 		<class>jp.co.techmatrix.store.model.Author</class>
+		<class>jp.co.techmatrix.store.model.OrderLine</class>
+		<class>jp.co.techmatrix.store.model.User</class>
 		<properties>
 			<property name="eclipselink.ddl-generation" value="create-tables" />
 		</properties>

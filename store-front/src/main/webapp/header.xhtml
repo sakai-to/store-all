@@ -7,59 +7,76 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition>
-	<h:form>
-		<p:graphicImage library="images" name="obj_logo01.gif" />
+	<!-- 検索画面 -->
+	<h:form id="search">
+		<!-- 画像 -->
+		<h:outputLink value="index.xhtml">
+			<p:graphicImage library="images" name="techmatrix.png" style="border:0"/>
+		</h:outputLink>
 
-		<p:menubar>
-			<p:submenu label="カテゴリ">
-				<p:menuitem value="TMXビデオ" />
-			</p:submenu>
-			<f:facet name="options">
-				<p:inputText value="#{cartBean.title}" size="90" style="margin-right:10px" />
-				<p:commandButton ajax="true" value="検索"
-					action="#{cartBean.search()}" style="float:right" />
+		<!-- ツールバー -->
+		<p:toolbar id="tb" style="height:1000;">
+			<f:facet name="left">
+				<!-- 検索テキスト -->
+				<p:inputText id="keyword" size="50" value="#{headerView.title}" />
+				<p:watermark for="keyword" value="検索したい本を入力してください" id="watermark" />
+
+				<!-- 検索ボタン -->
+				<p:commandButton value="検索" action="#{headerView.search()}"
+					icon="ui-icon-search" ajax="false">
+				</p:commandButton>
+
+				<!-- カートボタン -->
+				<p:commandButton value="#{headerView.orders.size()}"
+					styleClass="cart" ajax="true" id="imageBtn" action="#{headerView.register}"></p:commandButton>
+
+				<!-- カートボタン押下後表示する箇所 -->
+				<p:overlayPanel id="imagePanel" for="imageBtn" hideEffect="fade"
+					rendered="#{not empty headerView.orders}" showEvent="mouseover"
+					hideEvent="mouseup">
+					<p:dataTable var="order" value="#{headerView.orders}"
+						style="width:350px" id="cartTable">
+						<!-- 画像 -->
+						<p:column colspan="2" width="35" headerText="画像">
+							<p:graphicImage name="#{order.book.id}.jpg" library="images"
+								width="30" />
+						</p:column>
+
+						<!-- タイトル -->
+						<p:column width="120" headerText="タイトル">
+							<h:outputText value="#{order.book.title}"></h:outputText>
+						</p:column>
+
+						<!-- 購入数 -->
+						<p:column width="20" headerText="数">
+							<h:outputText value="#{order.count}冊"></h:outputText>
+						</p:column>
+						
+						<!-- 削除ボタン -->
+						<p:column width="60" headerText="削除">
+							<p:commandButton value="削除する" ajax="false" update=":search:cartTable" action="#{headerView.removeOrder()}">
+								<f:setPropertyActionListener value="#{order}" target="#{headerView.orderLine}"></f:setPropertyActionListener>
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
+					<p:separator class="sep" rendered="true"></p:separator>
+					<h:outputText value="トータル:#{headerView.total()}円"></h:outputText>
+					<div class="pad">
+						<p:commandButton value="購入手続きを進める" action="#{headerView.register()}" ajax="false"></p:commandButton>
+					</div>
+				</p:overlayPanel>
+				<h:outputText value="#{headerView.user.id}さん" rendered="#{not empty headerView.user}"></h:outputText>
+				
+				<p:commandButton value="サインイン" rendered="#{empty headerView.user}" action="#{headerView.login}" ajax="false">
+				</p:commandButton>
 			</f:facet>
-		</p:menubar>
+		</p:toolbar>
+
+		<!-- Sticky -->
+		<p:sticky target="tb" />
+
 	</h:form>
-
-	<p:megaMenu orientation="horizontal" style="margin-top:20px">
-		<p:submenu label="カテゴリ" icon="ui-icon-check">
-			<p:column>
-				<p:submenu rendered="false">
-					<p:menuitem value="TV.1.1" url="#" />
-					<p:menuitem value="TV.1.2" url="#" />
-				</p:submenu>
-				<p:submenu label=".NET">
-					<p:menuitem value="TV.2.1" url="#" />
-					<p:menuitem value="TV.2.2" url="#" />
-					<p:menuitem value="TV.2.3" url="#" />
-				</p:submenu>
-			</p:column>
-
-			<p:column>
-				<p:submenu label="TV.4">
-					<p:menuitem value="TV.4.1" url="#" />
-					<p:menuitem value="TV.4.2" url="#" />
-				</p:submenu>
-				<p:submenu label="TV.5">
-					<p:menuitem value="TV.5.1" url="#" />
-					<p:menuitem value="TV.5.2" url="#" />
-					<p:menuitem value="TV.5.3" url="#" />
-				</p:submenu>
-			</p:column>
-
-			<p:column>
-				<strong>Image</strong>
-				<p:graphicImage name="/demo/images/nature/nature1.jpg" width="200" />
-			</p:column>
-			<f:facet name="options">
-
-				<p:inputText value="#{cartBean.title}" size="90" />
-				<p:commandButton ajax="true" value="検索"
-					action="#{cartBean.search()}" />
-			</f:facet>
-		</p:submenu>
-	</p:megaMenu>
 </ui:composition>
 
 </html>

@@ -42,6 +42,25 @@ public class Author implements Serializable{
 	private String name;
 	
 	/**
+	 * 引数なしのコンストラクタ
+	 */
+	public Author(){
+		super();
+	}
+	
+	/**
+	 * コンストラクタ
+	 * @param id
+	 * @param isbn
+	 * @param name
+	 */
+	public Author(int id, String isbn, String name){
+		this.id = id;
+		this.isbn = isbn;
+		this.name = name;
+	}
+	
+	/**
 	 * idの取得
 	 * @return
 	 */

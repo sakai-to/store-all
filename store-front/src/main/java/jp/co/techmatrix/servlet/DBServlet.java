@@ -31,7 +31,7 @@ public class DBServlet extends HttpServlet{
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
-		DataBase target = null;
+		DataBase database = null;
 		
 		res.setCharacterEncoding("UTF-8");
 		
@@ -39,9 +39,9 @@ public class DBServlet extends HttpServlet{
 		PrintWriter out = res.getWriter();
 		
 		try{
-			target = new DataBase();
+			database = new DataBase();
 			
-			List<String> ret = target.getItemByTitle(req.getParameter("title"));
+			List<String> ret = database.getItemByTitle(req.getParameter("title"));
 			
 			for(Iterator<String> iter = ret.iterator(); iter.hasNext();){
 				String title = (String)iter.next();
@@ -62,6 +62,7 @@ public class DBServlet extends HttpServlet{
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException{
+		this.doGet(req, res);
 	}
 
 }

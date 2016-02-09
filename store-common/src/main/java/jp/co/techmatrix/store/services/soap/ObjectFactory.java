@@ -26,13 +26,19 @@ public class ObjectFactory {
 
     private final static QName _AddNewBookOperation_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "addNewBookOperation");
     private final static QName _AddNewBookOperationResponse_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "addNewBookOperationResponse");
+    private final static QName _AddRegisterOperation_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "addRegisterOperation");
+    private final static QName _AddRegisterOperationResponse_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "addRegisterOperationResponse");
     private final static QName _Book_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "book");
     private final static QName _DeleteBookOperation_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "deleteBookOperation");
     private final static QName _DeleteBookOperationResponse_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "deleteBookOperationResponse");
+    private final static QName _GetAllRegister_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "getAllRegister");
+    private final static QName _GetAllRegisterResponse_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "getAllRegisterResponse");
     private final static QName _GetItemByIdOperation_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "getItemByIdOperation");
     private final static QName _GetItemByIdOperationResponse_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "getItemByIdOperationResponse");
     private final static QName _GetItemByTitleOperation_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "getItemByTitleOperation");
     private final static QName _GetItemByTitleOperationResponse_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "getItemByTitleOperationResponse");
+    private final static QName _RemoveRegister_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "removeRegister");
+    private final static QName _RemoveRegisterResponse_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "removeRegisterResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: jp.co.techmatrix.store.services.soap
@@ -66,6 +72,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AddRegisterOperation }
+     * 
+     */
+    public AddRegisterOperation createAddRegisterOperation() {
+        return new AddRegisterOperation();
+    }
+
+    /**
+     * Create an instance of {@link AddRegisterOperationResponse }
+     * 
+     */
+    public AddRegisterOperationResponse createAddRegisterOperationResponse() {
+        return new AddRegisterOperationResponse();
+    }
+
+    /**
      * Create an instance of {@link DeleteBookOperation }
      * 
      */
@@ -79,6 +101,22 @@ public class ObjectFactory {
      */
     public DeleteBookOperationResponse createDeleteBookOperationResponse() {
         return new DeleteBookOperationResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetAllRegister }
+     * 
+     */
+    public GetAllRegister createGetAllRegister() {
+        return new GetAllRegister();
+    }
+
+    /**
+     * Create an instance of {@link GetAllRegisterResponse }
+     * 
+     */
+    public GetAllRegisterResponse createGetAllRegisterResponse() {
+        return new GetAllRegisterResponse();
     }
 
     /**
@@ -114,6 +152,30 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link RemoveRegister }
+     * 
+     */
+    public RemoveRegister createRemoveRegister() {
+        return new RemoveRegister();
+    }
+
+    /**
+     * Create an instance of {@link RemoveRegisterResponse }
+     * 
+     */
+    public RemoveRegisterResponse createRemoveRegisterResponse() {
+        return new RemoveRegisterResponse();
+    }
+
+    /**
+     * Create an instance of {@link OrderLine }
+     * 
+     */
+    public OrderLine createOrderLine() {
+        return new OrderLine();
+    }
+
+    /**
      * Create an instance of {@link Author }
      * 
      */
@@ -127,6 +189,14 @@ public class ObjectFactory {
      */
     public Publisher createPublisher() {
         return new Publisher();
+    }
+
+    /**
+     * Create an instance of {@link User }
+     * 
+     */
+    public User createUser() {
+        return new User();
     }
 
     /**
@@ -156,6 +226,24 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddRegisterOperation }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.services.store.techmatrix.co.jp/", name = "addRegisterOperation")
+    public JAXBElement<AddRegisterOperation> createAddRegisterOperation(AddRegisterOperation value) {
+        return new JAXBElement<AddRegisterOperation>(_AddRegisterOperation_QNAME, AddRegisterOperation.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link AddRegisterOperationResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.services.store.techmatrix.co.jp/", name = "addRegisterOperationResponse")
+    public JAXBElement<AddRegisterOperationResponse> createAddRegisterOperationResponse(AddRegisterOperationResponse value) {
+        return new JAXBElement<AddRegisterOperationResponse>(_AddRegisterOperationResponse_QNAME, AddRegisterOperationResponse.class, null, value);
+    }
+
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link Book }{@code >}}
      * 
      */
@@ -180,6 +268,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://soap.services.store.techmatrix.co.jp/", name = "deleteBookOperationResponse")
     public JAXBElement<DeleteBookOperationResponse> createDeleteBookOperationResponse(DeleteBookOperationResponse value) {
         return new JAXBElement<DeleteBookOperationResponse>(_DeleteBookOperationResponse_QNAME, DeleteBookOperationResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllRegister }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.services.store.techmatrix.co.jp/", name = "getAllRegister")
+    public JAXBElement<GetAllRegister> createGetAllRegister(GetAllRegister value) {
+        return new JAXBElement<GetAllRegister>(_GetAllRegister_QNAME, GetAllRegister.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetAllRegisterResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.services.store.techmatrix.co.jp/", name = "getAllRegisterResponse")
+    public JAXBElement<GetAllRegisterResponse> createGetAllRegisterResponse(GetAllRegisterResponse value) {
+        return new JAXBElement<GetAllRegisterResponse>(_GetAllRegisterResponse_QNAME, GetAllRegisterResponse.class, null, value);
     }
 
     /**
@@ -216,6 +322,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://soap.services.store.techmatrix.co.jp/", name = "getItemByTitleOperationResponse")
     public JAXBElement<GetItemByTitleOperationResponse> createGetItemByTitleOperationResponse(GetItemByTitleOperationResponse value) {
         return new JAXBElement<GetItemByTitleOperationResponse>(_GetItemByTitleOperationResponse_QNAME, GetItemByTitleOperationResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RemoveRegister }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.services.store.techmatrix.co.jp/", name = "removeRegister")
+    public JAXBElement<RemoveRegister> createRemoveRegister(RemoveRegister value) {
+        return new JAXBElement<RemoveRegister>(_RemoveRegister_QNAME, RemoveRegister.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link RemoveRegisterResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.services.store.techmatrix.co.jp/", name = "removeRegisterResponse")
+    public JAXBElement<RemoveRegisterResponse> createRemoveRegisterResponse(RemoveRegisterResponse value) {
+        return new JAXBElement<RemoveRegisterResponse>(_RemoveRegisterResponse_QNAME, RemoveRegisterResponse.class, null, value);
     }
 
 }
