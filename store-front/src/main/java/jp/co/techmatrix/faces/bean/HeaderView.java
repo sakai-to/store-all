@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -40,6 +42,12 @@ public class HeaderView implements Serializable{
 	private OrderLine orderLine;
 	
 	private User user;
+	
+	private String id;
+	
+	private String password;
+	
+	private boolean cart = false;
 
 	/**
 	 * titleの取得
@@ -114,6 +122,54 @@ public class HeaderView implements Serializable{
 	}
 	
 	/**
+	 * IDの取得	
+	 * @return
+	 */
+	public String getId(){
+		return this.id;
+	}
+
+	/**
+	 * idの設定
+	 * @param id
+	 */
+	public void setId(String id){
+		this.id = id;
+	}
+
+	/**
+	 * パスワードの取得
+	 * @return
+	 */
+	public String getPassword(){
+		return this.password;
+	}
+
+	/**
+	 * パスワードの設定
+	 * @param password
+	 */
+	public void setPassword(String password){
+		this.password = password;
+	}
+	
+	/**
+	 * カート画面からの遷移？
+	 * @return
+	 */
+	public boolean getCart(){
+		return this.cart;
+	}
+
+	/**
+	 * カート画面からの繊維を設定する
+	 * @param isCart
+	 */
+	public void setCart(boolean cart){
+		this.cart = cart;
+	}
+
+	/**
 	 * オーダーを削除する
 	 * @param orderLine
 	 */
@@ -175,5 +231,43 @@ public class HeaderView implements Serializable{
 		}
 		
 		return result;
+	}
+
+	/**
+	 * ログイン処理
+	 * @return
+	 */
+	public String login(){
+		// ログインに失敗した場合
+		if(this.id == null || this.password == null){
+			return "error.xhtml";
+		}
+
+		FacesContext context = FacesContext.getCurrentInstance();
+
+		User user = new User();
+		user.setId(this.id);
+		user.setPassword(this.password);
+		
+		this.user = user;
+		
+		// メッセージ出力
+		context.addMessage(null, new FacesMessage(user.getId() + "さんのログインに成功しました。", ""));
+
+		if(this.cart){
+			this.cart = false;
+			return "register.xhtml";
+		}
+		else{
+			return "index.xhtml";	
+		}
+	}
+	
+	/**
+	 * 画面遷移
+	 * @return
+	 */
+	public String headerLogin(){
+		return "login.xhtml";
 	}
 }

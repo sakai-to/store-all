@@ -11,11 +11,12 @@
 	<h:form id="search">
 		<!-- 画像 -->
 		<h:outputLink value="index.xhtml">
-			<p:graphicImage library="images" name="techmatrix.png" style="border:0"/>
+			<p:graphicImage library="images" name="techmatrix.png"
+				style="border:0" />
 		</h:outputLink>
 
 		<!-- ツールバー -->
-		<p:toolbar id="tb" style="height:1000;">
+		<p:toolbar id="tb" style="">
 			<f:facet name="left">
 				<!-- 検索テキスト -->
 				<p:inputText id="keyword" size="50" value="#{headerView.title}" />
@@ -28,14 +29,16 @@
 
 				<!-- カートボタン -->
 				<p:commandButton value="#{headerView.orders.size()}"
-					styleClass="cart" ajax="true" id="imageBtn" action="#{headerView.register}"></p:commandButton>
+					styleClass="cart" ajax="true" id="imageBtn"
+					action="#{headerView.register}"></p:commandButton>
 
 				<!-- カートボタン押下後表示する箇所 -->
 				<p:overlayPanel id="imagePanel" for="imageBtn" hideEffect="fade"
 					rendered="#{not empty headerView.orders}" showEvent="mouseover"
-					hideEvent="mouseup">
+					hideEvent="mousedown">
 					<p:dataTable var="order" value="#{headerView.orders}"
 						style="width:350px" id="cartTable">
+
 						<!-- 画像 -->
 						<p:column colspan="2" width="35" headerText="画像">
 							<p:graphicImage name="#{order.book.id}.jpg" library="images"
@@ -51,24 +54,36 @@
 						<p:column width="20" headerText="数">
 							<h:outputText value="#{order.count}冊"></h:outputText>
 						</p:column>
-						
+
 						<!-- 削除ボタン -->
 						<p:column width="60" headerText="削除">
-							<p:commandButton value="削除する" ajax="false" update=":search:cartTable" action="#{headerView.removeOrder()}">
-								<f:setPropertyActionListener value="#{order}" target="#{headerView.orderLine}"></f:setPropertyActionListener>
+							<p:commandButton value="削除する" ajax="false"
+								update=":search:cartTable" action="#{headerView.removeOrder()}">
+								<f:setPropertyActionListener value="#{order}"
+									target="#{headerView.orderLine}"></f:setPropertyActionListener>
 							</p:commandButton>
 						</p:column>
-
 					</p:dataTable>
-					<p:separator class="sep" rendered="true"></p:separator>
-					<h:outputText value="トータル:#{headerView.total()}円"></h:outputText>
-					<div class="pad">
-						<p:commandButton value="購入手続きを進める" action="#{headerView.register()}" ajax="false"></p:commandButton>
-					</div>
+
+					<!-- スペース -->
+					<p:spacer height="20"></p:spacer>
+
+					<h:outputText
+						value="小計(#{headerView.orders.size()}点):#{headerView.total()}円"></h:outputText>
+
+					<!-- 購入手続きボタン -->
+					<p:commandButton value="購入手続きを進める"
+						action="#{headerView.register()}" ajax="false" styleClass="right"></p:commandButton>
 				</p:overlayPanel>
-				<h:outputText value="#{headerView.user.id}さん" rendered="#{not empty headerView.user}"></h:outputText>
-				
-				<p:commandButton value="サインイン" rendered="#{empty headerView.user}" action="#{headerView.login}" ajax="false">
+
+				<!-- ログインしている場合 -->
+				<h:outputText value="#{headerView.user.id}さん"
+					rendered="#{not empty headerView.user}"></h:outputText>
+
+				<!-- ログインしていない場合 -->
+				<p:commandButton value="サインイン"
+					rendered="#{empty headerView.user}" action="#{headerView.headerLogin}"
+					ajax="false">
 				</p:commandButton>
 			</f:facet>
 		</p:toolbar>
@@ -77,6 +92,7 @@
 		<p:sticky target="tb" />
 
 	</h:form>
+	<p:spacer height="20"></p:spacer>
 </ui:composition>
 
 </html>

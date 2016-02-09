@@ -10,9 +10,21 @@
 <h:body>
 	<ui:composition template="./template.xhtml">
 		<ui:define name="body">
-			<h:form id="detail">
+			<h:form id="login">
 				<!-- PanelGrid -->
-
+				<div>
+					<h:outputText value="ID:"></h:outputText>
+					<p:inputText value="#{headerView.id}"></p:inputText>
+					<p:spacer width="20"></p:spacer>
+					<h:outputText value="パスワード:"></h:outputText>
+					<p:password value="#{headerView.password}"
+						requiredMessage="パスワードは必須です。" feedback="true"
+						promptLabel="入力して下さい" weakLabel="パスワード強度：弱い"
+						goodLabel="パスワード強度：普通" strongLabel="パスワード強度：強い"></p:password>
+				</div>
+				<p:spacer height="20"></p:spacer>
+				<p:commandButton value="サインイン" action="#{headerView.login}"
+					ajax="false"></p:commandButton>
 			</h:form>
 		</ui:define>
 	</ui:composition>

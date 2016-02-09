@@ -30,13 +30,13 @@
 					</p:row>
 					<p:row>
 						<p:column>詳細</p:column>
-						<p:column width="100" >
+						<p:column width="100">
 							<h:outputText value="#{detailView.book.description}" style="text-align:left !important;"></h:outputText>
 						</p:column>
 						<p:column rowspan="7">
 							<p:spinner value="#{detailView.count}"
 								max="#{detailView.book.stock}" min="0"></p:spinner>
-							<p:commandButton value="カートに入れる" action="#{detailView.cart}" ajax="false">
+							<p:commandButton value="カートに入れる" action="#{detailView.cart()}" ajax="false">
 							</p:commandButton>
 						</p:column>
 					</p:row>
@@ -74,7 +74,6 @@
 						</p:column>
 					</p:row>
 				</p:panelGrid>
-
 			</h:form>
 		</ui:define>
 	</ui:composition>
