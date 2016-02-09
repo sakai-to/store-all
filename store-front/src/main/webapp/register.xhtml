@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+	<ui:composition template="./template.xhtml">
+		<ui:define name="body">
+			<h:form id="register">
+				<!-- 商品の詳細 -->
+				<div class="center">
+					<h:outputText value="購入手続きを進めます"
+						rendered="#{empty headerView.user}"></h:outputText>
+					<h:outputText value="ログイン処理を進めてください"
+						rendered="#{empty headerView.user}"></h:outputText>
+				</div>
+				<!-- ログインしていないケース -->
+				<p:panelGrid rendered="#{empty headerView.user}" columns="2"
+					styleClass="center">
+					<p:column>
+						<p:inputText value="#{registerView.id}"></p:inputText>
+						<p:password value="#{registerView.password}" feedback="true"></p:password>
+						<p:commandButton value="ログイン" action="#{registerView.login}"
+							ajax="false"></p:commandButton>
+					</p:column>
+				</p:panelGrid>
+
+				<p:growl id="msg"></p:growl>
+					
+				<!-- ログイン済みのケース -->
+				<p:panelGrid rendered="#{not empty headerView.user}" styleClass="center">
+					<p:dataTable var="order" value="#{headerView.orders}">
+						<p:column headerText="画像">
+							<p:graphicImage name="#{order.book.id}.jpg" library="images"
+								width="50"></p:graphicImage>
+						</p:column>
+
+						<p:column headerText="タイトル">
+							<h:outputText value="#{order.book.title}"></h:outputText>
+						</p:column>
+						<p:column headerText="金額">
+							<h:outputText value="#{order.book.price}"></h:outputText>
+						</p:column>
+						<p:column headerText="数">
+							<h:outputText value="#{order.count}"></h:outputText>
+						</p:column>
+					</p:dataTable>
+				</p:panelGrid>
+				
+				<p:commandButton value="購入する" action="#{registerView.success}" ajax="false" rendered="#{not empty headerView.user}"></p:commandButton>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
