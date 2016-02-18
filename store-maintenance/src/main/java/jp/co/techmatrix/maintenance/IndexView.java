@@ -31,10 +31,11 @@ public class IndexView implements Serializable{
 		// DataBaseを開く
 		DataBase db = null;
 		Connection con = null;
+		
 		try{
+			// 
 			db = new DataBase();
 			con = db.getConnection();
-			
 		}catch(InstantiationException e){
 			e.printStackTrace();
 		}catch(IllegalAccessException e){
@@ -43,14 +44,6 @@ public class IndexView implements Serializable{
 			e.printStackTrace();
 		}catch(SQLException e){
 			e.printStackTrace();
-		}
-		finally{
-			if(con != null){
-				try{
-					con.close();
-				}catch(SQLException e){
-				}
-			}
 		}
 	}
 

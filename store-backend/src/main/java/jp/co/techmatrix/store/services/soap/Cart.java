@@ -65,8 +65,6 @@ public class Cart extends AbstractCart{
 
 	@Override
 	public boolean login(User user){
-		// TODO Auto-generated method stub
 		return false;
 	}
-
 }

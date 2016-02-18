@@ -63,12 +63,6 @@ public class DataBase implements Closeable{
 				// 検索された本のタイトルをすべてListに追加
 				ret.add(rs.getString("TITLE"));
 			}
-			
-			// rsのクローズ
-			rs.close();
-			
-			// stmtのクローズ
-			stmt.close();
 		}catch(SQLException e){
 			e.printStackTrace();
 			ret = null;

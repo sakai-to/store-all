@@ -35,7 +35,7 @@ public class BookStoreApplication extends Application{
 	    String hostname = "localhost";
 	    
 	    beanConfig.setHost(hostname + ":8080");
-	    beanConfig.setBasePath("/bookstore-bl" + APPLICATION_PATH);
+	    beanConfig.setBasePath("/store-backend" + APPLICATION_PATH);
 	    beanConfig.setResourcePackage("jp.co.techmatrix.store.services.rest");
 	    beanConfig.setScan(true);
 	}

@@ -21,25 +21,25 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="isbn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="authors" minOccurs="0"&gt;
  *           &lt;complexType&gt;
  *             &lt;complexContent&gt;
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                 &lt;sequence&gt;
- *                   &lt;element name="author" type="{http://soap.services.store.techmatrix.co.jp/}author" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *                   &lt;element name="authors" type="{http://soap.services.store.techmatrix.co.jp/}author" maxOccurs="unbounded" minOccurs="0"/&gt;
  *                 &lt;/sequence&gt;
  *               &lt;/restriction&gt;
  *             &lt;/complexContent&gt;
  *           &lt;/complexType&gt;
  *         &lt;/element&gt;
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="isbn" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}double"/&gt;
- *         &lt;element name="publish-date" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
  *         &lt;element name="publisher" type="{http://soap.services.store.techmatrix.co.jp/}publisher" minOccurs="0"/&gt;
  *         &lt;element name="stock" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="publish-date" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -50,93 +50,29 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "book", propOrder = {
-    "id",
-    "title",
-    "isbn",
     "authors",
     "description",
+    "id",
+    "isbn",
     "price",
-    "publishDate",
     "publisher",
-    "stock"
+    "stock",
+    "title",
+    "publishDate"
 })
 public class Book {
 
-    protected int id;
-    protected String title;
-    protected String isbn;
     protected Book.Authors authors;
     protected String description;
+    protected int id;
+    protected String isbn;
     protected double price;
+    protected Publisher publisher;
+    protected int stock;
+    protected String title;
     @XmlElement(name = "publish-date")
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar publishDate;
-    protected Publisher publisher;
-    protected int stock;
-
-    /**
-     * idプロパティの値を取得します。
-     * 
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * idプロパティの値を設定します。
-     * 
-     */
-    public void setId(int value) {
-        this.id = value;
-    }
-
-    /**
-     * titleプロパティの値を取得します。
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getTitle() {
-        return title;
-    }
-
-    /**
-     * titleプロパティの値を設定します。
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setTitle(String value) {
-        this.title = value;
-    }
-
-    /**
-     * isbnプロパティの値を取得します。
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getIsbn() {
-        return isbn;
-    }
-
-    /**
-     * isbnプロパティの値を設定します。
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setIsbn(String value) {
-        this.isbn = value;
-    }
 
     /**
      * authorsプロパティの値を取得します。
@@ -187,6 +123,46 @@ public class Book {
     }
 
     /**
+     * idプロパティの値を取得します。
+     * 
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * idプロパティの値を設定します。
+     * 
+     */
+    public void setId(int value) {
+        this.id = value;
+    }
+
+    /**
+     * isbnプロパティの値を取得します。
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getIsbn() {
+        return isbn;
+    }
+
+    /**
+     * isbnプロパティの値を設定します。
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setIsbn(String value) {
+        this.isbn = value;
+    }
+
+    /**
      * priceプロパティの値を取得します。
      * 
      */
@@ -200,30 +176,6 @@ public class Book {
      */
     public void setPrice(double value) {
         this.price = value;
-    }
-
-    /**
-     * publishDateプロパティの値を取得します。
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getPublishDate() {
-        return publishDate;
-    }
-
-    /**
-     * publishDateプロパティの値を設定します。
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setPublishDate(XMLGregorianCalendar value) {
-        this.publishDate = value;
     }
 
     /**
@@ -266,6 +218,54 @@ public class Book {
         this.stock = value;
     }
 
+    /**
+     * titleプロパティの値を取得します。
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * titleプロパティの値を設定します。
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTitle(String value) {
+        this.title = value;
+    }
+
+    /**
+     * publishDateプロパティの値を取得します。
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getPublishDate() {
+        return publishDate;
+    }
+
+    /**
+     * publishDateプロパティの値を設定します。
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setPublishDate(XMLGregorianCalendar value) {
+        this.publishDate = value;
+    }
+
 
     /**
      * <p>anonymous complex typeのJavaクラス。
@@ -277,7 +277,7 @@ public class Book {
      *   &lt;complexContent&gt;
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
      *       &lt;sequence&gt;
-     *         &lt;element name="author" type="{http://soap.services.store.techmatrix.co.jp/}author" maxOccurs="unbounded" minOccurs="0"/&gt;
+     *         &lt;element name="authors" type="{http://soap.services.store.techmatrix.co.jp/}author" maxOccurs="unbounded" minOccurs="0"/&gt;
      *       &lt;/sequence&gt;
      *     &lt;/restriction&gt;
      *   &lt;/complexContent&gt;
@@ -288,25 +288,25 @@ public class Book {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "", propOrder = {
-        "author"
+        "authors"
     })
     public static class Authors {
 
-        protected List<Author> author;
+        protected List<Author> authors;
 
         /**
-         * Gets the value of the author property.
+         * Gets the value of the authors property.
          * 
          * <p>
          * This accessor method returns a reference to the live list,
          * not a snapshot. Therefore any modification you make to the
          * returned list will be present inside the JAXB object.
-         * This is why there is not a <CODE>set</CODE> method for the author property.
+         * This is why there is not a <CODE>set</CODE> method for the authors property.
          * 
          * <p>
          * For example, to add a new item, do as follows:
          * <pre>
-         *    getAuthor().add(newItem);
+         *    getAuthors().add(newItem);
          * </pre>
          * 
          * 
@@ -316,11 +316,11 @@ public class Book {
          * 
          * 
          */
-        public List<Author> getAuthor() {
-            if (author == null) {
-                author = new ArrayList<Author>();
+        public List<Author> getAuthors() {
+            if (authors == null) {
+                authors = new ArrayList<Author>();
             }
-            return this.author;
+            return this.authors;
         }
 
     }

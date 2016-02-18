@@ -1,6 +1,7 @@
 package jp.co.techmatrix.store.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +23,8 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * Bookテーブル
@@ -33,7 +35,6 @@ import javax.xml.bind.annotation.XmlType;
 @NamedQueries({@NamedQuery(name = Book.SELECT_ALL_BOOKS, query = "SELECT b FROM BOOK b"),
 		@NamedQuery(name = Book.SELECT_ALL_BOOKS_WHERE_TITLE, query = "SELECT b FROM BOOK b WHERE UPPER(b.title) LIKE UPPER(:title)")})
 @XmlRootElement(name = "book")
-@XmlType(propOrder = {"id", "title", "isbn", "authors", "description", "price", "year", "publisher", "stock"})
 public class Book implements Serializable{
 
 	/**
@@ -59,7 +60,7 @@ public class Book implements Serializable{
 	@Column(name = "ID")
 	private int id;
 
-	@OneToMany(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, targetEntity = Author.class)
+	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, targetEntity = Author.class)
 	@JoinColumns(@JoinColumn(nullable = false, name = "isbn", referencedColumnName = "isbn"))
 	private List<Author> authors;
 
@@ -135,8 +136,9 @@ public class Book implements Serializable{
 	 * authorの取得
 	 * @return
 	 */
+	@JsonDeserialize(as = ArrayList.class, contentAs = Author.class)
 	@XmlElementWrapper(name = "authors")
-	@XmlElement(name = "author")
+	@XmlElement(name = "authors")
 	public List<Author> getAuthors(){
 		return this.authors;
 	}
@@ -204,7 +206,7 @@ public class Book implements Serializable{
 	 * yearの取得
 	 * @return
 	 */
-	@XmlElement(name = "publish-date")
+	@XmlElement(name = "year")
 	public Date getYear(){
 		return this.year;
 	}

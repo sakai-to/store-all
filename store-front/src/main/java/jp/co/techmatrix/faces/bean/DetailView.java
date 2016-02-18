@@ -121,5 +121,4 @@ public class DetailView implements Serializable{
 		// cart.xhtmlに遷移する
 		return "cart.xhtml";
 	}
-	
 }

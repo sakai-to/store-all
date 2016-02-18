@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -54,6 +55,7 @@ public class CartResource extends AbstractCart{
 	@Path("/add/book")
 	@ApiOperation(value = "指定した本を追加します。")
 	@Override
+	@Transactional
 	public void addNewBook(Book book){
 		super.addNewBook(book);
 	}

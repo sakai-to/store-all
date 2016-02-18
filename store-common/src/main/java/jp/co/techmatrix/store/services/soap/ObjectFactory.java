@@ -37,6 +37,8 @@ public class ObjectFactory {
     private final static QName _GetItemByIdOperationResponse_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "getItemByIdOperationResponse");
     private final static QName _GetItemByTitleOperation_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "getItemByTitleOperation");
     private final static QName _GetItemByTitleOperationResponse_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "getItemByTitleOperationResponse");
+    private final static QName _Login_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "login");
+    private final static QName _LoginResponse_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "loginResponse");
     private final static QName _RemoveRegister_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "removeRegister");
     private final static QName _RemoveRegisterResponse_QNAME = new QName("http://soap.services.store.techmatrix.co.jp/", "removeRegisterResponse");
 
@@ -152,6 +154,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Login }
+     * 
+     */
+    public Login createLogin() {
+        return new Login();
+    }
+
+    /**
+     * Create an instance of {@link LoginResponse }
+     * 
+     */
+    public LoginResponse createLoginResponse() {
+        return new LoginResponse();
+    }
+
+    /**
      * Create an instance of {@link RemoveRegister }
      * 
      */
@@ -165,6 +183,14 @@ public class ObjectFactory {
      */
     public RemoveRegisterResponse createRemoveRegisterResponse() {
         return new RemoveRegisterResponse();
+    }
+
+    /**
+     * Create an instance of {@link User }
+     * 
+     */
+    public User createUser() {
+        return new User();
     }
 
     /**
@@ -189,14 +215,6 @@ public class ObjectFactory {
      */
     public Publisher createPublisher() {
         return new Publisher();
-    }
-
-    /**
-     * Create an instance of {@link User }
-     * 
-     */
-    public User createUser() {
-        return new User();
     }
 
     /**
@@ -322,6 +340,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://soap.services.store.techmatrix.co.jp/", name = "getItemByTitleOperationResponse")
     public JAXBElement<GetItemByTitleOperationResponse> createGetItemByTitleOperationResponse(GetItemByTitleOperationResponse value) {
         return new JAXBElement<GetItemByTitleOperationResponse>(_GetItemByTitleOperationResponse_QNAME, GetItemByTitleOperationResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Login }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.services.store.techmatrix.co.jp/", name = "login")
+    public JAXBElement<Login> createLogin(Login value) {
+        return new JAXBElement<Login>(_Login_QNAME, Login.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link LoginResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://soap.services.store.techmatrix.co.jp/", name = "loginResponse")
+    public JAXBElement<LoginResponse> createLoginResponse(LoginResponse value) {
+        return new JAXBElement<LoginResponse>(_LoginResponse_QNAME, LoginResponse.class, null, value);
     }
 
     /**
