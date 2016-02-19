@@ -15,7 +15,7 @@ import jp.co.techmatrix.store.services.AbstractCart;
 
 /**
  * JAX-WSを利用したWebサービスアプリケーション
- * @author kosugi
+ * @author suzuki
  *
  */
 @Named
@@ -64,7 +64,7 @@ public class Cart extends AbstractCart{
 	}
 
 	@Override
-	public boolean login(User user){
-		return false;
+	public String login(User user){
+		return "";
 	}
 }

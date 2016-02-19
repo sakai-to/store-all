@@ -1,16 +1,19 @@
 package jp.co.techmatrix.store.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * Publisherテーブル
- * @author kosugi
+ * @author uchida
  *
  */
 @Entity(name = "PUBLISHER")
@@ -27,6 +30,9 @@ public class Publisher implements Serializable{
 	
 	@Column(name = "NAME", nullable = false, length = 30)
 	private String name;
+	
+	@OneToMany(mappedBy = "publisher", targetEntity = Book.class, cascade = CascadeType.ALL)
+	private List<Book> books;
 	
 	/**
 	 * コンストラクタ

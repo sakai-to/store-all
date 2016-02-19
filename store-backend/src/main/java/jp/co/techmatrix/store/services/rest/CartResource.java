@@ -70,14 +70,13 @@ public class CartResource extends AbstractCart{
 	
 	@Override
 	public List<OrderLine> getAllRegister(int id){
-		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	@PUT
 	@ApiOperation(value = "指定したカートを追加します。")
 	@Path("/add/register")
+	@Override
 	public void addRegister(List<OrderLine> register){
 		super.addRegister(register);
 	}
@@ -90,7 +89,7 @@ public class CartResource extends AbstractCart{
 	}
 
 	@Override
-	public boolean login(User user){
-		return false;
+	public String login(User user){
+		return "";
 	}
 }

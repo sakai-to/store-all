@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 
 /**
  * レジ用カテゴリ
- * @author kosugi
+ * @author sakai
  *
  */
 @Entity(name = "ORDERLINE")

@@ -8,13 +8,11 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -28,6 +26,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 /**
  * Bookテーブル
+ * 
  * @author kosugi
  *
  */
@@ -60,7 +59,7 @@ public class Book implements Serializable{
 	@Column(name = "ID")
 	private int id;
 
-	@OneToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY, targetEntity = Author.class)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumns(@JoinColumn(nullable = false, name = "isbn", referencedColumnName = "isbn"))
 	private List<Author> authors;
 
@@ -70,8 +69,6 @@ public class Book implements Serializable{
 	@Column(name = "TITLE", nullable = false, length = 200)
 	private String title;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity = Publisher.class)
-	@JoinColumns(@JoinColumn(nullable = false, name = "publisher_id", referencedColumnName = "id"))
 	private Publisher publisher;
 
 	@Temporal(TemporalType.DATE)

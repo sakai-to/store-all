@@ -7,10 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Authorテーブル
- * @author kosugi
+ * 
+ * @author suzuki
  *
  */
 @Entity(name = "AUTHOR")
@@ -33,6 +35,7 @@ public class Author implements Serializable{
 	 * ISBN列
 	 */
 	@Column(name = "ISBN", nullable = false, length = 10)
+	@XmlTransient
 	private String isbn;
 	
 	/**

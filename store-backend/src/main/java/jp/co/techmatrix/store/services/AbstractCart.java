@@ -17,7 +17,7 @@ import jp.co.techmatrix.store.model.User;
 /**
  * EJB/REST/SOAPの大元
  * 
- * @author kosugi
+ * @author suzuki
  *
  */
 @Named

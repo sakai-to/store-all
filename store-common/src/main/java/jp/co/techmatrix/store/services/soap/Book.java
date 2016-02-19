@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -39,7 +38,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="publisher" type="{http://soap.services.store.techmatrix.co.jp/}publisher" minOccurs="0"/&gt;
  *         &lt;element name="stock" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="publish-date" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
+ *         &lt;element name="year" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -58,7 +57,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "publisher",
     "stock",
     "title",
-    "publishDate"
+    "year"
 })
 public class Book {
 
@@ -70,9 +69,8 @@ public class Book {
     protected Publisher publisher;
     protected int stock;
     protected String title;
-    @XmlElement(name = "publish-date")
     @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar publishDate;
+    protected XMLGregorianCalendar year;
 
     /**
      * authorsプロパティの値を取得します。
@@ -243,27 +241,27 @@ public class Book {
     }
 
     /**
-     * publishDateプロパティの値を取得します。
+     * yearプロパティの値を取得します。
      * 
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getPublishDate() {
-        return publishDate;
+    public XMLGregorianCalendar getYear() {
+        return year;
     }
 
     /**
-     * publishDateプロパティの値を設定します。
+     * yearプロパティの値を設定します。
      * 
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setPublishDate(XMLGregorianCalendar value) {
-        this.publishDate = value;
+    public void setYear(XMLGregorianCalendar value) {
+        this.year = value;
     }
 
 

@@ -45,7 +45,7 @@ public interface CartInterface{
 	 * @param user
 	 * @return
 	 */
-	public boolean login(User user);
+	public String login(User user);
 	
 	/**
 	 * 指定したユーザーidに関係するレジをすべて取得します。
