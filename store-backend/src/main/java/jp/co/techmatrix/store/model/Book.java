@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -81,13 +82,14 @@ public class Book implements Serializable{
 	@Column(name = "PRICE", nullable = false)
 	private double price;
 
-	@Column(name = "DESCRIPTION")
+	@Lob @Column(name = "DESCRIPTION", length = 2048)
 	private String description;
 
 	/**
 	 * コンストラクタ
 	 */
 	public Book(){
+		super();
 	}
 
 	/**
