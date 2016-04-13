@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -21,6 +22,7 @@ import jp.co.techmatrix.servlet.page.LoginPage;
 import jp.co.techmatrix.servlet.page.RegisterPage;
 import jp.co.techmatrix.servlet.page.ResultPage;
 
+@Category(SlowTests.class)
 public class AppTest {
 
 	private WebDriver driver;
